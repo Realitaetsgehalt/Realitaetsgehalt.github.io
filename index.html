@@ -6,9 +6,9 @@
             const IP = xhttp.responseText.split("\n")[2].split("=")[1];
             console.log("IP is", IP);
             let ipHash = IP.split('').map(c => c.charCodeAt()).reduce((t,n) => t+n);
-            let slowTimeHash = new Date().getTime() / 10000000;
+            let slowTimeHash = new Date().getTime() / 100000000;
             let realityHash = ipHash * slowTimeHash;
-            let realityPercent = realityHash % 90 + 10;
+            let realityPercent = (Math.sin(realityHash) + 1) * 45 + 10;
             document.getElementById("p").innerHTML = realityPercent.toFixed(2);
         }
         const xhttp = new XMLHttpRequest();
