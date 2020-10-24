@@ -8,7 +8,8 @@
             let ipHash = IP.split('.').map(Number).reduce((t,n) => t+n);
             let slowTimeHash = new Date().getTime() / 10000000;
             let realityHash = ipHash * slowTimeHash;
-            document.getElementById("p").innerHTML = (x % 900 + 100) / 10;
+            let realityPercent = realityHash % 90 + 10;
+            document.getElementById("p").innerHTML = realityPercent.toFixed(2);
         }
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = onDataRecieve;
