@@ -3,9 +3,8 @@
 <script>
         const API_URL = `https://www.cloudflare.com/cdn-cgi/trace`;
         function onDataRecieve() {
-            const ipRegex = /[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/                           
-            const IP = xhttp.responseText.match(ipRegex)[0];
-            let ipHash = IP.split('.').map(Number).reduce((t,n) => t+n);
+            const IP = xhttp.responseText.split("\n")[2].split("=")[1];
+            let ipHash = IP.split('').map(c => c.charCodeAt()).reduce((t,n) => t+n);
             let slowTimeHash = new Date().getTime() / 10000000;
             let realityHash = ipHash * slowTimeHash;
             let realityPercent = realityHash % 90 + 10;
